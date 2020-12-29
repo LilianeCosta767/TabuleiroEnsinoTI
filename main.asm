@@ -46,8 +46,10 @@
 		bne $s6, $zero, is13
 		addi $s0, $s0, 1 # plus with one in $s0
 		
-		is13: 
-		
+		is13: add $t3, $s0, $zero
+		      bne $t3, 13, return
+		     subi $s0, $s0, 2 
+			
 		
 		return: jr $ra
 		
@@ -55,6 +57,11 @@
 		# if position is multiple of four shows a message and go on
 		div $t0, $s1, 4 # divide by four
 		mfhi $s6 # take the rest
-		bne $s6, $zero, return
+		bne $s6, $zero, is13
 		addi $s1, $s1, 1 # plus with one in $s1
+		
+		is13: add $t3, $s1, $zero
+		      bne $t3, 13, return
+		     subi $s1, $s1, 2 
+		     
 		return: jr $ra
