@@ -55,9 +55,12 @@
 			
 		isEqual: # function to check if player 1 falls on the same position than player 2
 			add $t3, $s0, $zero  # $t3 receive player 1's position
-			add $t4, $s1, $zero  # $t4 receive player 1's position
-			bne $t3, $t4, return # checks if they're (not) equal
+			add $t4, $s1, $zero  # $t4 receive player 2's position
+			bne $t3, $t4, is20 # checks if they're (not) equal
 			subi $s0, $s0, 1     # player 1 back one position
+		
+		is20: # function to check if player 1 falls on 20's position
+			beq $s1, 20, exit   # player 1 won!
 		
 		return: jr $ra
 		
@@ -69,14 +72,17 @@
 		addi $s1, $s1, 1     # plus with one in $s1
 		
 		is13: # function to check if player 1 falls on 13's position
-			add $t3, $s1, $zero
-		      	bne $t3, 13, isEqual
+			add $t4, $s1, $zero
+		      	bne $t4, 13, isEqual
 		      	subi $s1, $s1, 2 
 		     
 		isEqual: # function to check if player 2 falls on the same position than player 1
 			add $t3, $s0, $zero  # $t3 receive player 1's position
-			add $t4, $s1, $zero  # $t4 receive player 1's position
-			bne $t3, $t4, return # checks if they're (not) equal
+			add $t4, $s1, $zero  # $t4 receive player 2's position
+			bne $t3, $t4, is20   # checks if they're (not) equal
 			subi $s1, $s1, 1     # player 2 back one position
+			
+		is20: # function to check if player 2 falls on 20's position
+			beq $s1, 20, exit   # player 2 won!
 			
 		return: jr $ra
