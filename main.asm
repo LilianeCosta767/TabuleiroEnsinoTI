@@ -2,8 +2,10 @@
 	vec: .word 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
 .text
 	# variables
-	# $t0 -> player 1's position 
-	# $t1 -> player 2's position
+	# $s0 -> player 1's position 
+	# $s1 -> player 2's position
+	# $t3 -> player 1's temporal variable
+	# $t4 -> player 2's temporal variable
 	addi $s0, $zero, 0
 	addi $s1, $zero, 0
 	
@@ -31,37 +33,50 @@
 	
 	dice:
 		addi $v0, $zero, 42 # take a random number
-		addi $a1, $zero, 6 # lenght
+		addi $a1, $zero, 6  # lenght
 		# include a number between zero and ten excluding ten
-		syscall # generate the random number 
+		syscall          # generate the random number 
 		addi $a0, $a0, 1 # increment one one random number (excluding the zero)
 		addi $v0, $zero, 1
-		syscall # print it
+		syscall          # print it
 		jr $ra
 		
 	checkPosition1:
 		# if position is multiple of four shows a message and go on
-		div $t0, $s0, 4 # divide by four
-		mfhi $s6 # take the rest
+		div $t0, $s0, 4      # divide by four
+		mfhi $s6             # take the rest
 		bne $s6, $zero, is13
-		addi $s0, $s0, 1 # plus with one in $s0
+		addi $s0, $s0, 1      # plus with one in $s0
 		
-		is13: add $t3, $s0, $zero
-		      bne $t3, 13, return
-		     subi $s0, $s0, 2 
+		is13: # function to check if player 1 falls on 13's position
+			add $t3, $s0, $zero
+		      	bne $t3, 13, isEqual
+		      	subi $s0, $s0, 2 
 			
+		isEqual: # function to check if player 1 falls on the same position than player 2
+			add $t3, $s0, $zero  # $t3 receive player 1's position
+			add $t4, $s1, $zero  # $t4 receive player 1's position
+			bne $t3, $t4, return # checks if they're (not) equal
+			subi $s0, $s0, 1     # player 1 back one position
 		
 		return: jr $ra
 		
 	checkPosition2:
 		# if position is multiple of four shows a message and go on
-		div $t0, $s1, 4 # divide by four
-		mfhi $s6 # take the rest
-		bne $s6, $zero, is13
-		addi $s1, $s1, 1 # plus with one in $s1
+		div $t0, $s1, 4      # divide by four
+		mfhi $s6             # take the rest
+		bne $s6, $zero, is13 
+		addi $s1, $s1, 1     # plus with one in $s1
 		
-		is13: add $t3, $s1, $zero
-		      bne $t3, 13, return
-		     subi $s1, $s1, 2 
+		is13: # function to check if player 1 falls on 13's position
+			add $t3, $s1, $zero
+		      	bne $t3, 13, isEqual
+		      	subi $s1, $s1, 2 
 		     
+		isEqual: # function to check if player 2 falls on the same position than player 1
+			add $t3, $s0, $zero  # $t3 receive player 1's position
+			add $t4, $s1, $zero  # $t4 receive player 1's position
+			bne $t3, $t4, return # checks if they're (not) equal
+			subi $s1, $s1, 1     # player 2 back one position
+			
 		return: jr $ra
