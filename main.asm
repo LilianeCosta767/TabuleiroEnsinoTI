@@ -1,5 +1,3 @@
-.data
-	vec: .word 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
 .text
 	# variables
 	# $s0 -> player 1's position 
@@ -15,7 +13,8 @@
 		
 		# player 1 avance $a0 positions
 		add $s0, $s0, $a0
-		jal checkPosition1
+		# add $a0, $s0, $zero # test
+		jal checkPosition
 		
 		# player 02 play the dice
 		jal dice
@@ -92,3 +91,6 @@
 			
 			returnII:
 				jr $ra # back
+				
+				
+# idea = tamanho do tabuleiro variavel
