@@ -1,5 +1,5 @@
 .data
-FileName:   .asciiz "\Users\DELL\Documents\UFS\oac\liliane.txt"
+FileName:   .asciiz "/Users/davi/Downloads/TabuleiroEnsinoTI/liliane.txt"
 res:        .asciiz ""
 
 .text
@@ -18,7 +18,7 @@ res:        .asciiz ""
 		# player 1 avance $a0 positions
 		add $s0, $s0, $a0
 		# add $a0, $s0, $zero # test
-		jal checkPosition
+		jal checkPosition1
 		
 		# player 02 play the dice
 		jal dice
@@ -34,13 +34,29 @@ res:        .asciiz ""
 		syscall
 		add $a0, $zero, $v0 # save the file descriptor
 		li $v0, 15          # system call for write to file
-		sb $s0, res         # put the player 1's position on "res"
-		sb $s1, res + 1     # put the player 2's position on "res"
+		li $t5, 10
+		div $s0, $t5
+		mflo $t6
+		mfhi $t7
+		addi $t6, $t6,48
+		addi $t7, $t7,48
+		sb $t6, res         # put the player 1's position on "res"
+		sb $t7, res + 1     # put the player 2's position on "res"
+		div $s1, $t5
+		mflo $t6
+		mfhi $t7
+		addi $t6, $t6,48
+		addi $t7, $t7,48
+		sb $t6, res + 2        # put the player 1's position on "res"
+		sb $t7, res + 3     # put the player 2's position on "res"
+		la $a1, res	    #  O endereco do buffer de saída
+		li $a2, 4
 		syscall
 		li $v0, 16          # close the arquive
 		syscall
+	
 		
-		j start
+		#j start
 	
 		# functions
 		exit:
