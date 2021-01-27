@@ -28,8 +28,17 @@ res:        .asciiz ""
 		jal checkPosition2
 	
 		# before to start again let's do the txt's arquive
-		sb $s0, res     # put the player 1's position on "res"
-		sb $s1, res + 1 # put the player 2's position on "res"
+		li $a1, 1           # write mode
+		li $v0, 13          # system call for open file
+		la $a0, FileName    # output file name
+		syscall
+		add $a0, $zero, $v0 # save the file descriptor
+		li $v0, 15          # system call for write to file
+		sb $s0, res         # put the player 1's position on "res"
+		sb $s1, res + 1     # put the player 2's position on "res"
+		syscall
+		li $v0, 16          # close the arquive
+		syscall
 		
 		j start
 	
