@@ -1,3 +1,7 @@
+.data
+FileName:   .asciiz "\Users\DELL\Documents\UFS\oac\liliane.txt"
+res:        .asciiz ""
+
 .text
 	# variables
 	# $s0 -> player 1's position 
@@ -23,6 +27,10 @@
 		add $s1, $s1, $a0
 		jal checkPosition2
 	
+		# before to start again let's do the txt's arquive
+		sb $s0, res     # put the player 1's position on "res"
+		sb $s1, res + 1 # put the player 2's position on "res"
+		
 		j start
 	
 		# functions

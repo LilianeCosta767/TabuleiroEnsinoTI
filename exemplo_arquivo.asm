@@ -1,5 +1,5 @@
 .data
-FileName:   .asciiz "/home/andrelumesi/opt/file.txt"
+FileName:   .asciiz "C:/Users/DELL/Documents/UFS/oac/ProjetoAssembly/file.txt"
 res:        .asciiz "1804"
 
 .text
