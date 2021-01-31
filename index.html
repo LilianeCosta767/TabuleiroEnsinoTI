@@ -1,65 +1,305 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
+
 <head>
-	<link rel="stylesheet" href="index.css" type="text/css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROJETO OAC</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
+
 <body>
-	<div id="tabuleiro">
 
-		<!-- <div id="pos0">
-			<p>0</p>
-		</div>
-		<div id="linha1">
-			<div id="linha1">
-				<p>1</p>
-			</div>
-			<div id="linha1">
-				<p>2</p>
-			</div>
-			<div id="linha1">
-				<p>3</p>
-			</div>
-			<div id="linha1">
-				<p>4</p>
-			</div>
-			<div id="linha1">
-				<p id="pos5">5</p>
-				<div id="pos6"> 
-					<p id="pos6">6</p>
-				</div> 
-				<div id="pos7">
-					<p>7</p>
-			</div> 
-			
-			
-		</div> -->
-		<div class="grid-start">
-			0 (START)
-			<script src="index.js"></script>
-			<button onclick="dado()"><img src="./imagens/face1.JPG" alt="dado" id="face"></button>
-		</div>
-		<div class="grid-container">
-			<div class="grid-item" id="1">1</div>
-			<div class="grid-item" id="2">2</div>
-			<div class="grid-item" id="3">3</div>
-			<div class="grid-item" id="4">4</div>
-			<div class="grid-item" id="5">5</div>
-			<div class="grid-item" id="10">10</div>
-			<div class="grid-item" id="9">9</div>
-			<div class="grid-item" id="8">8</div>
-			<div class="grid-item" id="7">7</div>
-			<div class="grid-item" id="6">6</div>
-			<div class="grid-item" id="11">11</div>
-			<div class="grid-item" id="12">12</div>
-			<div class="grid-item" id="13">13</div>
-			<div class="grid-item" id="14">14</div>
-			<div class="grid-item" id="15">15</div>
-			<div class="grid-fim" id="20">20 (FIM)</div>
-			<div class="grid-item" id="19">19</div>
-			<div class="grid-item" id="18">18</div>
-			<div class="grid-item" id="17">17</div>
-			<div class="grid-item" id="16">16</div>
-		  </div>
+  <div id="message">
 
-	</div>
+  </div>
+
+  <div style="display: none; justify-content: center; margin-top: 7%;" id="start">
+    <div id="container">
+      <div id="avatar">
+        <img src="avatar.png" alt="avatar" width="50%">
+      </div>
+      <div>
+        <button id="btnstart" onclick="javascript: start()">
+          <h1>START GAME</h1>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table" id="tabuleiro">
+    <div class="board">
+      <div class="center">
+        <div class="community-chest-deck">
+          <h2 class="label">Jogador 1</h2>
+          <div class="deck"></div>
+        </div>
+        <h1 class="title">MSI</h1>
+        <div class="chance-deck">
+          <h2 class="label">Jogador 2</h2>
+          <div class="deck1"></div>
+        </div>
+      </div>
+
+      <div class="row horizontal-row bottom-row">
+
+        <div class="jogador" id="15">
+          <div class="container">
+            <div class="name">15</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+        <div class="jogador" id="14">
+          <div class="container">
+            <div class="name">14</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+        <div class="jogador" id="13">
+          <div class="container">
+            <div class="name">13</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+        <div class="jogador" id="12">
+          <div class="container">
+            <div class="name">12</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+        <div class="space corner" style="width: 125px !important; display: flex; justify-content: center;">
+          <div class="jogador" id="11">
+            <div class="container">
+              <div class="name">11</div>
+            </div>
+            <div class="item">
+              <div>Joafird</div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="space corner jail" id="16">
+        <div style="display: flex; justify-content: center; height: 20%; align-items: center; width: 100%;">
+          <div class="name">16</div>
+        </div>
+        <div class="item">
+          <div>Joafird</div>
+        </div>
+      </div>
+
+      <div class="row vertical-row left-row">
+        <div class="jogador" id="20">
+          <div class="container">
+            <div class="name">20</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+        <div class="jogador" id="19">
+          <div class="container">
+            <div class="name">19</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+        <div class="jogador" id="18">
+          <div class="container">
+            <div class="name">18</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+        <div class="jogador" id="17">
+          <div class="container">
+            <div class="name">17</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jogador" id="1">
+        <div class="container">
+          <div class="name">1</div>
+        </div>
+        <div class="item">
+          <div>Joafird</div>
+        </div>
+      </div>
+
+      <div class="row horizontal-row top-row">
+
+        <div class="jogador" id="2">
+          <div class="container">
+            <div class="name">2</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+        <div class="jogador" id="3">
+          <div class="container">
+            <div class="name">3</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+        <div class="jogador" id="4">
+          <div class="container">
+            <div class="name">4</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+        <div class="jogador" id="5">
+          <div class="container">
+            <div class="name">5</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="jogador" id="6">
+        <div class="container">
+          <div class="name">6</div>
+        </div>
+        <div class="item">
+          <div>Joafird</div>
+        </div>
+      </div>
+
+      <div class="row vertical-row right-row">
+
+        <div class="jogador" id="7">
+          <div class="container">
+            <div class="name">7</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+        <div class="jogador" id="8">
+          <div class="container">
+            <div class="name">8</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+        <div class="jogador" id="9">
+          <div class="container">
+            <div class="name">9</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+        <div class="jogador" id="10">
+          <div class="container">
+            <div class="name">10</div>
+          </div>
+          <div class="item">
+            <div>Joafird</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </body>
+
+<script>
+  const home = document.getElementById('start');
+  const tabuleiro = document.getElementById('tabuleiro');
+
+  function start() {
+    home.style.display = 'none';
+    tabuleiro.classList.remove('disable');
+  };
+
+  function alertaMessage(res) {
+    const toast = document.getElementById("message");
+    toast.innerHTML = res;
+    toast.classList.add("show");
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 15000);
+  }
+
+  var ant1 = 0;
+  var ant2 = 0;
+
+  var myVar = setInterval(() => {
+    $.ajax({
+      url: './backend.php',
+      method: 'post',
+      data: {},
+      success: function (response) {
+        response = JSON.parse(response);
+        console.log(response);
+        jog1 = parseInt(response.jog1);
+        jog2 = parseInt(response.jog2);
+
+        if (ant1 != jog1) {
+          ant1 > 0 ? document.getElementById(ant1).style.backgroundColor = "#FED1CB" : null;
+          document.getElementById(jog1).style.backgroundColor = '#ff0000'
+          ant1 = jog1;
+          if (jog1 % 4 == 0) {
+            alertaMessage('Jogador: 1 -> Em 1978, Carol Shaw foi a primeira mulher a entrar no mercado de videogames, trabalhando na empresa pioneira em videogames Atari, e depois foi a responsável por criar o primeiro sistema de geração procedural de conteúdo, que nunca deixava uma fase de jogo ser igual à outra — prática que continua até hoje.');
+          }
+        }
+
+        setTimeout(() => {
+          if (ant2 != jog2) {
+            ant2 > 0 ? document.getElementById(ant2).style.backgroundColor = "#FED1CB" : null;
+            document.getElementById(jog2).style.backgroundColor = 'green'
+            ant2 = jog2
+          }
+          if (jog2 % 4 == 0) {
+            alertaMessage('Jogador: 2 -> Em 1978, Carol Shaw foi a primeira mulher a entrar no mercado de videogames, trabalhando na empresa pioneira em videogames Atari, e depois foi a responsável por criar o primeiro sistema de geração procedural de conteúdo, que nunca deixava uma fase de jogo ser igual à outra — prática que continua até hoje.');
+          }
+        }, jog1 % 4 == 0 ? 16500 : 3000);
+
+        if (jog1 == 20 || jog2 == 20) {
+          clearInterval(myVar);
+        }
+      }
+    });
+
+  }, 4000);
+</script>
+
 </html>
