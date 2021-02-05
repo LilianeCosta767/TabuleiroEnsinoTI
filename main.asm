@@ -1,6 +1,13 @@
 .data
-FileName:   .asciiz "/Users/davi/Downloads/TabuleiroEnsinoTI/liliane.txt"
+
+FileName:   .asciiz "/Users/davi/Desktop/OAC/dado.txt"
 res:        .asciiz ""
+
+jogar_dado: 
+    .ascii  "\n Opcao \n"
+    .ascii  "SIM - rodar o dado\n"
+    .ascii  "NAO - se nao quer rodar o dado\n"
+    .asciiz "Cancelar - para sair do jogo\n"
 
 .text
 	# variables
@@ -12,8 +19,16 @@ res:        .asciiz ""
 	addi $s1, $zero, 0
 	
 	start:
+		la $a0, jogar_dado # chama o texto e armazena em $a0 o valor da resposta
+		li $v0, 50 # chama o alerta 
+		syscall # faz a chamada de fato
+		# the return is in a0: 0=yes, 1=no, 2=cancel
+		beq $a0, 0,  jogar1  # se for igual a 0 vai pra chamada do dado
+		beq $a0, 1, exit  # se for igual a 1 vai sair do jogo
+		b exit            # se for igual a 2 vai sair do jogo
+	
 		# player 01 play the dice
-		jal dice
+		jogar1: jal dice
 		
 		# player 1 avance $a0 positions
 		add $s0, $s0, $a0
@@ -21,7 +36,15 @@ res:        .asciiz ""
 		jal checkPosition1
 		
 		# player 02 play the dice
-		jal dice
+		la $a0, jogar_dado # chama o texto e armazena em $a0 o valor da resposta
+		li $v0, 50 # chama o alerta 
+		syscall # faz a chamada de fato
+		# the return is in a0: 0=yes, 1=no, 2=cancel
+		beq $a0, 0,  jogar2  # se for igual a 0 vai pra chamada do dado
+		beq $a0, 1, exit  # se for igual a 1 vai sair do jogo
+		b exit            # se for igual a 2 vai sair do jogo
+		
+		jogar2: jal dice
 		
 		# player 2 avance $a0 positions
 		add $s1, $s1, $a0
@@ -49,14 +72,13 @@ res:        .asciiz ""
 		addi $t7, $t7,48
 		sb $t6, res + 2        # put the player 1's position on "res"
 		sb $t7, res + 3     # put the player 2's position on "res"
-		la $a1, res	    #  O endereco do buffer de saída
+		la $a1, res	    #  O endereco do buffer de sa�da
 		li $a2, 4
 		syscall
 		li $v0, 16          # close the arquive
 		syscall
-	
 		
-		#j start
+		j start
 	
 		# functions
 		exit:
