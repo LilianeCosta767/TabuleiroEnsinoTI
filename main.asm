@@ -1,13 +1,13 @@
 .data
 
-FileName:   .asciiz "/Users/davi/Desktop/OAC/dado.txt"
-res:        .asciiz ""
+FileName:   .asciiz "/Users/DELL/Downloads/liliane.txt"
+res:        .asciiz "0000"
 
 jogar_dado: 
-    .ascii  "\n Opcao \n"
-    .ascii  "SIM - rodar o dado\n"
-    .ascii  "NAO - se nao quer rodar o dado\n"
-    .asciiz "Cancelar - para sair do jogo\n"
+    .ascii  "\n Select \n"
+    .ascii  "YES - se você deseja rodar o dado\n"
+    .ascii  "NO - se você não quer rodar o dado\n"
+    .asciiz "Cancel - para sair do jogo\n"
 
 .text
 	# variables
@@ -49,34 +49,8 @@ jogar_dado:
 		# player 2 avance $a0 positions
 		add $s1, $s1, $a0
 		jal checkPosition2
-	
-		# before to start again let's do the txt's arquive
-		li $a1, 1           # write mode
-		li $v0, 13          # system call for open file
-		la $a0, FileName    # output file name
-		syscall
-		add $a0, $zero, $v0 # save the file descriptor
-		li $v0, 15          # system call for write to file
-		li $t5, 10
-		div $s0, $t5
-		mflo $t6
-		mfhi $t7
-		addi $t6, $t6,48
-		addi $t7, $t7,48
-		sb $t6, res         # put the player 1's position on "res"
-		sb $t7, res + 1     # put the player 2's position on "res"
-		div $s1, $t5
-		mflo $t6
-		mfhi $t7
-		addi $t6, $t6,48
-		addi $t7, $t7,48
-		sb $t6, res + 2        # put the player 1's position on "res"
-		sb $t7, res + 3     # put the player 2's position on "res"
-		la $a1, res	    #  O endereco do buffer de saï¿½da
-		li $a2, 4
-		syscall
-		li $v0, 16          # close the arquive
-		syscall
+		
+		jal gravaArquivo 
 		
 		j start
 	
@@ -101,6 +75,7 @@ jogar_dado:
 			mfhi $s6             # take the rest
 			bne $s6, $zero, is13I
 			addi $s0, $s0, 1      # plus with one in $s0
+			j returnI
 		
 			is13I: # function to check if player 1 falls on 13's position
 				add $t3, $s0, $zero
@@ -116,7 +91,9 @@ jogar_dado:
 				j returnI
 			
 			is20I: # function to check if player 1 falls on 20's position
-				bge $s0, 20, exit   # player 1 won!
+				blt $s0, 20, returnI   # player 1 won!
+				jal gravaArquivo
+				jal exit
 		
 			returnI:
 				jr $ra # back
@@ -142,10 +119,42 @@ jogar_dado:
 				j returnII
 			
 			is20II: # function to check if player 2 falls on 20's position
-				bge $s1, 20, exit   # player 2 won!
+				blt $s1, 20, returnI   # player 1 won!
+				jal gravaArquivo
+				jal exit
 			
 			returnII:
 				jr $ra # back
+				
+		gravaArquivo:
+				# before to start again let's do the txt's arquive
+				li $a1, 1           # write mode
+				li $v0, 13          # system call for open file
+				la $a0, FileName    # output file name
+				syscall
+				add $a0, $zero, $v0 # save the file descriptor
+				li $v0, 15          # system call for write to file
+				li $t5, 10
+				div $s0, $t5
+				mflo $t6
+				mfhi $t7
+				addi $t6, $t6,48
+				addi $t7, $t7,48
+				sb $t6, res         # put the player 1's position on "res"
+				sb $t7, res + 1     # put the player 2's position on "res"
+				div $s1, $t5
+				mflo $t6
+				mfhi $t7
+				addi $t6, $t6,48
+				addi $t7, $t7,48
+				sb $t6, res + 2        # put the player 1's position on "res"
+				sb $t7, res + 3     # put the player 2's position on "res"
+				la $a1, res	    #  O endereco do buffer de saída
+				li $a2, 4
+				syscall
+				li $v0, 16          # close the arquive
+				syscall
+				jr $ra
 				
 				
 # idea = tamanho do tabuleiro variavel
