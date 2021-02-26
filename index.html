@@ -7,6 +7,18 @@
   <title>PROJETO OAC</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    .res {
+      border-radius: 100%;
+      background-color: #fff;
+      color: black;
+      width: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 </head>
 
 <body>
@@ -15,10 +27,13 @@
 
   </div>
 
-  <div style="display: none; justify-content: center; margin-top: 7%;" id="start">
+  <div style="display: flex; justify-content: center; margin-top: 7%;" id="start">
     <div id="container">
       <div id="avatar">
         <img src="avatar.png" alt="avatar" width="50%">
+      </div>
+      <div style="margin-bottom: 30px;">
+        <span style="font-size: 60px; font-weight: bold;">GTM</span>
       </div>
       <div>
         <button id="btnstart" onclick="javascript: start()">
@@ -28,15 +43,25 @@
     </div>
   </div>
 
-  <div class="table" id="tabuleiro">
+  <div class="table disable" id="tabuleiro">
     <div class="board">
       <div class="center">
-        <div class="community-chest-deck">
+        <div class="community-chest-deck" id="jogg1">
           <h2 class="label">Jogador 1</h2>
           <div class="deck"></div>
         </div>
-        <h1 class="title">MSI</h1>
-        <div class="chance-deck">
+        <div class="title disable result" id="result" style="display: none;">
+          <div>
+            <div class="name" id="nome_vencedor"></div>
+          </div>
+          <div>
+            <lottie-player src="https://assets8.lottiefiles.com/private_files/lf30_sm3isyoz.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+          </div>
+          <div>
+            <button onclick="document.location.reload(true);">Jogar novamente</button>
+          </div>
+        </div>
+        <div class="chance-deck" id="jogg2">
           <h2 class="label">Jogador 2</h2>
           <div class="deck1"></div>
         </div>
@@ -45,48 +70,33 @@
       <div class="row horizontal-row bottom-row">
 
         <div class="jogador" id="15">
-          <div class="container">
-            <div class="name">15</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">15</div>
           </div>
         </div>
 
         <div class="jogador" id="14">
-          <div class="container">
-            <div class="name">14</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">14</div>
           </div>
         </div>
 
         <div class="jogador" id="13">
-          <div class="container">
-            <div class="name">13</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">13</div>
           </div>
         </div>
 
         <div class="jogador" id="12">
-          <div class="container">
-            <div class="name">12</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">12</div>
           </div>
         </div>
 
         <div class="space corner" style="width: 125px !important; display: flex; justify-content: center;">
           <div class="jogador" id="11">
-            <div class="container">
-              <div class="name">11</div>
-            </div>
             <div class="item">
-              <div>Joafird</div>
+              <div class="name">11</div>
             </div>
           </div>
         </div>
@@ -95,143 +105,98 @@
       </div>
 
       <div class="space corner jail" id="16">
-        <div style="display: flex; justify-content: center; height: 20%; align-items: center; width: 100%;">
-          <div class="name">16</div>
-        </div>
         <div class="item">
-          <div>Joafird</div>
+          <div class="name">16</div>
         </div>
       </div>
 
       <div class="row vertical-row left-row">
         <div class="jogador" id="20">
-          <div class="container">
-            <div class="name">20</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">20</div>
           </div>
         </div>
         <div class="jogador" id="19">
-          <div class="container">
-            <div class="name">19</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">19</div>
           </div>
         </div>
 
         <div class="jogador" id="18">
-          <div class="container">
-            <div class="name">18</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">18</div>
           </div>
         </div>
         <div class="jogador" id="17">
-          <div class="container">
-            <div class="name">17</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">17</div>
           </div>
         </div>
       </div>
 
       <div class="jogador" id="1">
-        <div class="container">
-          <div class="name">1</div>
-        </div>
         <div class="item">
-          <div>Joafird</div>
+          <div class="name">1</div>
         </div>
       </div>
 
       <div class="row horizontal-row top-row">
 
         <div class="jogador" id="2">
-          <div class="container">
-            <div class="name">2</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">2</div>
           </div>
         </div>
 
         <div class="jogador" id="3">
-          <div class="container">
-            <div class="name">3</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">3</div>
           </div>
         </div>
 
         <div class="jogador" id="4">
-          <div class="container">
-            <div class="name">4</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">4</div>
           </div>
         </div>
 
         <div class="jogador" id="5">
-          <div class="container">
-            <div class="name">5</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">5</div>
           </div>
         </div>
 
       </div>
 
       <div class="jogador" id="6">
-        <div class="container">
-          <div class="name">6</div>
-        </div>
         <div class="item">
-          <div>Joafird</div>
+          <div class="name">6</div>
         </div>
       </div>
 
       <div class="row vertical-row right-row">
 
         <div class="jogador" id="7">
-          <div class="container">
-            <div class="name">7</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">7</div>
           </div>
         </div>
 
         <div class="jogador" id="8">
-          <div class="container">
-            <div class="name">8</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">8</div>
           </div>
         </div>
 
         <div class="jogador" id="9">
-          <div class="container">
-            <div class="name">9</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">9</div>
           </div>
         </div>
 
         <div class="jogador" id="10">
-          <div class="container">
-            <div class="name">10</div>
-          </div>
           <div class="item">
-            <div>Joafird</div>
+            <div class="name">10</div>
           </div>
         </div>
 
@@ -245,61 +210,118 @@
   const home = document.getElementById('start');
   const tabuleiro = document.getElementById('tabuleiro');
 
-  function start() {
-    home.style.display = 'none';
-    tabuleiro.classList.remove('disable');
-  };
-
-  function alertaMessage(res) {
+  function alertaMessage(res, jog) {
     const toast = document.getElementById("message");
-    toast.innerHTML = res;
+    toast.innerHTML = "";
+    let conteudo = '<button id="btn_sair" class = "res" onclick="javacript: sair()"><h1>X</h1></button>';
+    toast.innerHTML = conteudo;
+    let text = "<div style='text-align: center;'>" + jog + "</div><br />";
+    toast.innerHTML = toast.innerHTML + text;
+    toast.innerHTML = toast.innerHTML + res;
     toast.classList.add("show");
-    setTimeout(() => {
-      toast.classList.remove("show");
-    }, 15000);
+  }
+
+  function sair() {
+    const toast = document.getElementById("message");
+    toast.classList.remove("show");
+    $('#btn_sair').val(5);
   }
 
   var ant1 = 0;
   var ant2 = 0;
 
-  var myVar = setInterval(() => {
-    $.ajax({
-      url: './backend.php',
-      method: 'post',
-      data: {},
-      success: function (response) {
-        response = JSON.parse(response);
-        console.log(response);
-        jog1 = parseInt(response.jog1);
-        jog2 = parseInt(response.jog2);
+  const frases = [
+    "Em 1843, Ada Lovelace foi a primeira pessoa a desenvolver um algoritmo computacional da história.",
+    "As mulheres foram as primeiras engenheiras de software.",
+    "Hedy Lamarr era atriz e, em 1942, durante a segunda Guerra Mundial, patenteou um sistema de sinal com variador de frequência para evitar que torpedos controlados por rádio sejam interceptados, princípio usado hoje em tecnologias como o Bluetooth e versões anteriores de CDMA e Wi-Fi.",
+    "Em 1952, Grace Hopper foi a criadora da linguagem COBOL e, assim, popularizou a ideia de linguagem de programação orientada para o processamento de banco de dados usada até hoje.",
+    "Em 1958, Mary Kenneth Keller foi uma educadora e pioneira na área de tecnologia, além de ser a primeira mulher nos Estados Unidos a finalizar o PhD em Ciência da Computação.",
+    "Em 1960, a engenharia de software e o desenvolvimento eram considerados trabalhos femininos.",
+    "Em 1969, Margaret Hamilton foi desenvolvedora e líder do time que desenvolveu os módulos lunares e de comando do sistema de voo da missão Apollo, recebendo a Medalha Presidencial da Liberdade por este feito, dada pelo então presidente americano Barack Obama.",
+    "Em 1978, Carol Shaw foi a primeira mulher a entrar no mercado de videogames, trabalhando na empresa pioneira em videogames Atari, e depois foi a responsável por criar o primeiro sistema de geração procedural de conteúdo, que nunca deixava uma fase de jogo ser igual à outra — prática que continua até hoje.",
+    "Em 2006, Frances Allen foi a primeira mulher a ganhar o prêmio Turing e foi responsável por alguns dos sistemas iniciais de segurança da National Security Agency (NSA).",
+    "Garotas do ENIAC: usado para calcular trajetórias de mísseis durante a segunda Guerra Mundial. Com a construção do ENIAC, seis mulheres foram escolhidas para dar continuidade, programando a máquina tendo apenas seus diagramas lógicos. Como resultado, os cálculos que anteriormente levavam cerca de 30 horas começaram a ser processados em 15 segundos.",
+    "Em meados da década de 80 os computadores e videogames foram considerados de meninos pelo mercado, desmotivando as garotas pela área, diminuindo a presença feminina de 50% para 37% .",
+    "Volta das mulheres na comunidade de TI: PyLadies, Black Girls Code, Mind the Gap, GSG - Girls Support Girls.",
+    "Sammet foi a criadora de uma das primeiras linguagens computadorizadas existentes. O FORMAC, que entrou em uso no final dos anos 1960 pelas mãos da IBM, era utilizado para manipular fórmulas matemáticas e auxiliar em cálculos complexos.",
+    "Karen Sparck Jones:  uma das criadoras do conceito de “inverso da frequência em documentos”, a base do que hoje são os sistemas de busca e localização de conteúdo e pedra fundamental de companhias como o Google, por exemplo.",
+    "Ada Lovelace: traduzia os textos de Luigi Menabrea, um matemático italiano, sobre as ferramentas analíticas usadas por Charles Babbage, um matemático inglês. Esse trabalho derivativo resultou no que, para muitos especialistas, é o primeiro algoritmo criado na história, muito antes da existência de máquinas que pudessem processá-lo. Conhecida como a primeira programadora da história.",
+    "Cristina Junqueira ela é uma das fundadoras da fintech nubank e seu nome tem peso, sendo reconhecido como um dos mais importantes na lista de mulheres na tecnologia",
+    "Roberta Williams:  fundadora da On-Line Systems, que mais tarde, se tornaria a Sierra, um dos maiores nomes da indústria de jogos eletrônicos, tendo participado do desenvolvimento e/ou distribuição de grandes nomes como King’s Quest, Phantasmagoria, Half-Life e Counter-Strike.",
+    "A WOMCY é uma organização sem fins lucrativos, composta por mulheres, com foco no desenvolvimento da segurança cibernética na América Latina. O principal objetivo da WOMCY é minimizar a lacuna de conhecimento e aumentar o grupo de talentos em segurança cibernética na América Latina.",
+    "Radia Perlman Conhecida como a Mãe da Internet, pois inventou um dos protocolos fundamentais para seu funcionamento chamado STP",
+    "Edith Clarke: em 1919 tornou-se a primeira mulher a conquistar um Mestrado no Departamento de Engenharia Elétrica e Ciência da Computação do MIT, além de ter se formado em matemática e em astronomia."
+  ];
 
-        if (ant1 != jog1) {
-          ant1 > 0 ? document.getElementById(ant1).style.backgroundColor = "#FED1CB" : null;
-          document.getElementById(jog1).style.backgroundColor = '#ff0000'
-          ant1 = jog1;
-          if (jog1 % 4 == 0) {
-            alertaMessage('Jogador: 1 -> Em 1978, Carol Shaw foi a primeira mulher a entrar no mercado de videogames, trabalhando na empresa pioneira em videogames Atari, e depois foi a responsável por criar o primeiro sistema de geração procedural de conteúdo, que nunca deixava uma fase de jogo ser igual à outra — prática que continua até hoje.');
+  var maximo = 19;
+
+  var i, arr = [];
+  for (i = 0; i < maximo; i++) {
+    arr[i] = i + 1;
+  }
+  var p, n, tmp;
+  for (p = arr.length; p;) {
+    n = Math.random() * p-- | 0;
+    tmp = arr[n];
+    arr[n] = arr[p];
+    arr[p] = tmp;
+  }
+
+  var escolha = 0;
+
+  var iniciar = () =>
+    setInterval(() => {
+      $.ajax({
+        url: './backend.php',
+        method: 'post',
+        data: {},
+        success: function (response) {
+          response = JSON.parse(response);
+          jog1 = parseInt(response.jog1);
+          jog2 = parseInt(response.jog2);
+
+          if (ant1 != jog1) {
+            ant1 > 0 ? document.getElementById(ant1 > 20 ? 20 : ant1).style.backgroundColor = "#d2eaf5" : null;
+            document.getElementById(jog1 > 20 ? 20 : jog1).style.backgroundColor = '#FED1CB'
+            document.getElementById(jog1 > 20 ? 20 : jog1).style.width = '100%'
+            ant1 = jog1;
+            alertaMessage(frases[parseInt(arr[escolha])], 'Jogador 1');
+            escolha++;
+          }
+          if ($('#btn_sair').val() == 5) {
+            setTimeout(function () {
+              if (ant2 != jog2) {
+                ant2 > 0 ? document.getElementById(ant2 > 20 ? 20 : ant2).style.backgroundColor = "#d2eaf5" : null;
+                document.getElementById(jog2 > 20 ? 20 : jog2).style.backgroundColor = '#6E3DC8'
+                document.getElementById(jog2 > 20 ? 20 : jog2).style.width = '100%'
+                ant2 = jog2
+                alertaMessage(frases[parseInt(arr[escolha])], 'Jogador 2');
+                escolha++;
+              }
+            }, 1000);
+            $('#btn_sair').val(0);
+            if (jog1 >= 20 || jog2 >= 20) {
+              clearInterval(iniciar);
+              setTimeout(() => {
+                document.getElementById('jogg2').classList.add('disable');
+                document.getElementById('jogg1').classList.add('disable');
+                document.getElementById('result').style.display = 'flex';
+                jog1 >= 20 ?
+                  document.getElementById('nome_vencedor').innerHTML = "Vencedor: Jogador 1" : document.getElementById('nome_vencedor').innerHTML = "Vencedor: Jogador 2";
+              }, 3000);
+
+            }
           }
         }
+      });
+    }, 1000);
 
-        setTimeout(() => {
-          if (ant2 != jog2) {
-            ant2 > 0 ? document.getElementById(ant2).style.backgroundColor = "#FED1CB" : null;
-            document.getElementById(jog2).style.backgroundColor = 'green'
-            ant2 = jog2
-          }
-          if (jog2 % 4 == 0) {
-            alertaMessage('Jogador: 2 -> Em 1978, Carol Shaw foi a primeira mulher a entrar no mercado de videogames, trabalhando na empresa pioneira em videogames Atari, e depois foi a responsável por criar o primeiro sistema de geração procedural de conteúdo, que nunca deixava uma fase de jogo ser igual à outra — prática que continua até hoje.');
-          }
-        }, jog1 % 4 == 0 ? 16500 : 3000);
+  function start() {
+    home.style.display = 'none';
+    tabuleiro.classList.remove('disable');
+    iniciar();
+  };
 
-        if (jog1 == 20 || jog2 == 20) {
-          clearInterval(myVar);
-        }
-      }
-    });
-
-  }, 4000);
 </script>
 
 </html>
